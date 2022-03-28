@@ -86,6 +86,21 @@ Route::group(['prefix' => '/v1'], function () {
     Route::delete('tags/{id}',function($id){
         Tag::findOrFail($id)->delete();
         return 204;
-    })
+    });
+
+    Route::get('users/{id}/lessons',function($id){
+        $user = User::findOrFail($id)->lessons;
+        return $user;
+    });
+
+    Route::get('lessons/{id}/tags',function($id){
+        $lesson = Lesson::findOrFail($id)->tags;
+        return $lesson;
+    });
+
+    Route::get('tags/{id}/lessons',function($id){
+        $tag = Tag::findOrFail($id)->lessons;
+        return $tag;
+    });
 
 });
